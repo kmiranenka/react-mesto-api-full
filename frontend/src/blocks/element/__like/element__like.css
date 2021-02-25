@@ -1,0 +1,21 @@
+.element__like {
+    height: 18px;
+    width: 20px;
+    background: url(../../../images/like-icon.svg) center no-repeat;
+    border: none;
+    padding: 0;
+    align-self: center;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.element__like:hover {
+    opacity: 0.6;
+    transition: opacity 0.5s linear;
+}
+
+.element__like_active {
+    opacity: 1;
+    background: url(../../../images/like-icon-filled.svg) center no-repeat;
+}

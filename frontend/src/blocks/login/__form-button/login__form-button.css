@@ -1,0 +1,28 @@
+.login__form-button {
+    width: 358px;
+    height: 50px;
+    margin: 186px auto 0;
+    background: #FFFFFF;
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+}
+
+.login__form-button:hover {
+    opacity: 0.85;
+}
+
+
+@media screen and (max-width: 486px) {
+    .login__form-button {
+        width: 260px;
+height: 46px;
+margin: 143px auto 0;
+font-size: 16px;
+line-height: 19px;
+    }
+}

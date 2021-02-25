@@ -1,0 +1,24 @@
+@import url(./vendor/normalize.css);
+@import url(./fonts/inter.css);
+@import url(./blocks/page/page.css);
+@import url(./blocks/header/header.css);
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__form-container/popup__form-container.css);
+@import url(./blocks/popup/_dark-background/popup_dark-background.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/info/info.css);
+@import url(./blocks/elements/elements.css);
+@import url(./blocks/element/element.css);
+@import url(./blocks/login/login.css);
+@import url(./blocks/footer/footer.css);
+
+body {
+  min-width: 300px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #000000;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}

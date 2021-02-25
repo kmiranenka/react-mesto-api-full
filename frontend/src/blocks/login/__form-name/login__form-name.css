@@ -1,0 +1,16 @@
+.login__form-name{
+    font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+text-align: center;
+color: #FFFFFF;
+margin: 0 auto 50px;
+}
+
+@media screen and (max-width: 486px) {
+    .login__form-name{
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 auto 40px;
+    }
+}

@@ -1,0 +1,44 @@
+.login__item {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 13px;
+    height: 14px;
+    border: none;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(204, 204, 204, 1);
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #000000;
+    color: rgba(204, 204, 204, 1);
+
+}
+
+.login__item::placeholder {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(204, 204, 204, 1);
+}
+
+.login__item:-internal-autofill-selected {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(204, 204, 204, 1);
+    background-color: #000000;
+
+}
+
+@media screen and (max-width: 486px) {
+    .login__item {
+        width: 260px;
+    }
+}

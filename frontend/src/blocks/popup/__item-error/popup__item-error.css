@@ -1,0 +1,26 @@
+.popup__item-error {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    margin-left: 0px;
+    margin-top: 5px;
+    visibility: hidden;
+    min-height: 30px;
+    max-width: 370px;
+}
+
+@media screen and (max-width: 486px) {
+    .popup__item-error {
+        max-width: 258px;
+        min-height: 20px;
+    }
+}
+
+@media screen and (max-width: 422px) {
+    .popup__item-error {
+        max-width: 200px;
+    }
+}

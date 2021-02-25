@@ -1,0 +1,32 @@
+@import url(./__logo/header__logo.css);
+@import url(./__line/header__line.css);
+@import url(./__logo-container/header__logo-container.css);
+@import url(./__logo-button/header__logo-button.css);
+@import url(./__email-container/header__email-container.css);
+@import url(./__email/header__email.css);
+@import url(./__logo-menu_mobile/header__logo-menu_mobile.css);
+@import url(./__menu-button/header__menu-button.css);
+@import url(./__email/_mobile/header__email_mobile.css);
+@import url(./__logo-button/_mobile/header__logo-button_mobile.css);
+@import url(./__close-button/header__close-button.css);
+@import url(./__close-icon/header__close-icon.css);
+
+
+.header {
+    max-width: 882px;
+    margin: 0 auto;
+    padding: 45px 0 40px;
+}
+
+@media screen and (max-width: 908px) {
+    .header {
+        padding: 45px 19px 40px;
+    }
+}
+
+@media screen and (max-width:462px) {
+    .header {
+        padding: 45px 0 40px;
+        width: 100%;
+    }
+}

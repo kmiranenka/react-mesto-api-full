@@ -1,0 +1,21 @@
+.info__name {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    color: #ffffff;
+    margin: 0;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 770px) {
+    .info__name {
+        width: fit-content;
+        margin-top: 14px;
+        font-size: 27px;
+    }
+}

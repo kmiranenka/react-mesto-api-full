@@ -1,0 +1,22 @@
+.info__job-title {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: 10px 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 770px) {
+    .info__job-title {
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 0px;
+        align-self: flex-end;
+    }
+}

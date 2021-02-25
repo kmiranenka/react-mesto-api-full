@@ -1,0 +1,8 @@
+.element__likes-container {
+    max-width: 20px;
+    max-height: 37px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 21px 21px 24px 0px;
+}

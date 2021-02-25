@@ -1,0 +1,8 @@
+.header__close-button{
+    width: 30px;
+    margin: 0px 20px 0 0;
+}
+
+.header__close-button:hover{
+    opacity: 0.6;
+}

@@ -1,0 +1,13 @@
+.info__container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 770px) {
+    .info__container {
+        max-width: 200px;
+        align-items: center;
+    }
+}

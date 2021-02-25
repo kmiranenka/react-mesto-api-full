@@ -1,0 +1,18 @@
+.header__logo-button{
+    font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 22px;
+text-align: right;
+background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+color: #FFFFFF;
+padding: 0;
+height: fit-content;
+}
+
+.header__logo-button:hover{
+    opacity: 0.6;
+}

@@ -1,0 +1,8 @@
+.login__form-container{
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    margin: 20px 0 0;
+
+
+}

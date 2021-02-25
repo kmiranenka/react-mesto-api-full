@@ -1,0 +1,10 @@
+.header__menu-button{
+    display: none;
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 612px) {
+    .header__menu-button{
+        display: block;
+    }
+}

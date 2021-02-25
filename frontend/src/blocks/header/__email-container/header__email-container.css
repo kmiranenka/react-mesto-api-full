@@ -1,0 +1,9 @@
+.header__email-container{
+    display: flex;
+}
+
+@media screen and (max-width: 612px) {
+    .header__email-container{
+        display: none;
+    }
+}
