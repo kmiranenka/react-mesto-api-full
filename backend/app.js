@@ -12,6 +12,8 @@ const {
 const auth = require('./middlewares/auth');
 const cors = require('cors');
 
+app.options('*', cors())
+
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -21,8 +23,6 @@ mongoose.connect('mongodb://localhost:27017/mydb', {
 const { PORT = 3000 } = process.env;
 
 const app = express();
-
-app.use(cors());
 
 app.use(requestLogger);
 
