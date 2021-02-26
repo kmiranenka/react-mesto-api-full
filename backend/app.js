@@ -12,8 +12,6 @@ const {
 const auth = require('./middlewares/auth');
 const cors = require('cors');
 
-app.options('*', cors())
-
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -23,6 +21,8 @@ mongoose.connect('mongodb://localhost:27017/mydb', {
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+app.use(cors());
 
 app.use(requestLogger);
 
@@ -35,14 +35,14 @@ const resourceNotFound = (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/signin', cors(), celebrate({
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
   }),
 }), login);
 
-app.post('/signup', cors(), celebrate({
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     name: Joi.string().min(2).max(30),
@@ -53,8 +53,8 @@ app.post('/signup', cors(), celebrate({
 
 app.use(auth);
 
-app.use('/cards', cors(), cardsRouter);
-app.use('/users', cors(), usersRouter);
+app.use('/cards', cardsRouter);
+app.use('/users', usersRouter);
 
 app.use(resourceNotFound);
 
