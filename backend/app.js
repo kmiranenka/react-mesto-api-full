@@ -21,9 +21,27 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+  'https://api.mironenko.students.nomoredomains.icu',
+'https://www.api.mironenko.students.nomoredomains.icu'
+];
+
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  const { origin } = req.headers;
+
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
   next();
 });
 
