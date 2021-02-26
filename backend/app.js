@@ -10,6 +10,29 @@ const {
   login, createUser,
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const cors = require('cors');
+
+const allowedCors = [
+  'https://api.mironenko.students.nomoredomains.icu',
+  'http://api.mironenko.students.nomoredomains.icu',
+  'https://www.api.mironenko.students.nomoredomains.icu',
+  'http://www.api.mironenko.students.nomoredomains.icu',
+  'localhost:3000'
+];
+
+const options = {
+  origin: [
+    'https://api.mironenko.students.nomoredomains.icu',
+    'https://www.api.mironenko.students.nomoredomains.icu',
+    'http://localhost:3000',
+    'https://mironenko.students.nomoredomains.icu',
+    'https://www.mironenko.students.nomoredomains.icu',
+  ],
+
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+};
+
+  app.use(cors(options));
 
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
