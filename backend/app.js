@@ -35,14 +35,14 @@ const resourceNotFound = (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/signin', celebrate({
+app.post('/signin', cors(), celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
   }),
 }), login);
 
-app.post('/signup', celebrate({
+app.post('/signup', cors(), celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     name: Joi.string().min(2).max(30),
@@ -53,8 +53,8 @@ app.post('/signup', celebrate({
 
 app.use(auth);
 
-app.use('/cards', cardsRouter);
-app.use('/users', usersRouter);
+app.use('/cards', cors(), cardsRouter);
+app.use('/users', cors(), usersRouter);
 
 app.use(resourceNotFound);
 
