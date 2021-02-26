@@ -10,7 +10,6 @@ const {
   login, createUser,
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
-const cors = require('cors');
 
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
@@ -22,7 +21,11 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(requestLogger);
 
