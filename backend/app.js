@@ -27,6 +27,8 @@ const options = {
   'http://localhost:3000',
   'https://api.mironenko.students.nomoredomains.icu',
  'https://www.api.mironenko.students.nomoredomains.icu'
+ 'https://mironenko.students.nomoredomains.icu',
+ 'https://www.mironenko.students.nomoredomains.icu'
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],  credentials: true,};
   app.use('*', cors(options));
