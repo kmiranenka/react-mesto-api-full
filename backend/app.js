@@ -26,7 +26,7 @@ const options = {
   origin: [
   'http://localhost:3000',
   'https://api.mironenko.students.nomoredomains.icu',
- 'https://www.api.mironenko.students.nomoredomains.icu'
+ 'https://www.api.mironenko.students.nomoredomains.icu',
  'https://mironenko.students.nomoredomains.icu',
  'https://www.mironenko.students.nomoredomains.icu'
   ],
