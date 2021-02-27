@@ -27,20 +27,16 @@ module.exports.sendUser = (req, res) => {
 
 module.exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
-    .then((hash) => {
-      const {
-        name, about, avatar, email,
-      } = req.body;
-      User.create({
-        name, about, avatar, email, hash,
-      });
-    })
+    .then(hash => User.create({
+      email: req.body.email,
+      password: hash,
+    }))
     .then((user) => {
       if (!user) {
         throw new ValidationError('Переданы некорректные данные');
       }
       res.send({ data: user });
-    });
+    })
 };
 
 module.exports.updateUserInfo = (req, res) => {
