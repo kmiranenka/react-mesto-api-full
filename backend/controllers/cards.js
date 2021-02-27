@@ -21,7 +21,7 @@ module.exports.deleteCard = (req, res, next) => {
       }
       res.send({ data: card });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(next);
 };
 
 module.exports.createCard = (req, res, next) => {
@@ -33,7 +33,7 @@ module.exports.createCard = (req, res, next) => {
       }
       res.send({ data: card });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(next);
 };
 
 module.exports.likeCard = (req, res, next) => {
@@ -48,7 +48,7 @@ module.exports.likeCard = (req, res, next) => {
       }
       res.send({ data: card });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(next);
 };
 
 module.exports.dislikeCard = (req, res, next) => {
@@ -63,5 +63,5 @@ module.exports.dislikeCard = (req, res, next) => {
       }
       res.send({ data: card });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(() => next(new NotFoundError('Данные не найдены')));
 };

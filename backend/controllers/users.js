@@ -47,7 +47,7 @@ module.exports.createUser = (req, res, next) => {
       };
       res.send({ data: userData });
     })
-    .catch(next(new ConflictError('Пользователь уже создан')));
+    .catch(() => next(new ConflictError('Пользователь уже создан')));
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
@@ -63,7 +63,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(next);
 };
 
 module.exports.updateUserAvatar = (req, res, next) => {
@@ -79,7 +79,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next(new ValidationError('Переданы некорректные данные')));
+    .catch(next);
 };
 
 module.exports.login = (req, res, next) => {
