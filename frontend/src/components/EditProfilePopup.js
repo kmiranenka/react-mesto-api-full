@@ -35,9 +35,9 @@ function handleSubmit(e) {
     return(
         <PopupWithForm isOpen={props.isOpen} name={"edit"} title={"Редактировать профиль"} onSubmit={handleSubmit} children={<>
             <fieldset className="popup__input-container">
-                <input className="popup__item popup__item_el_name" id="name-input" name="name" type="text" placeholder="Имя" required minLength="2" maxLength="40" value={name} onChange={handleUserNameChange}/>
+                <input className="popup__item popup__item_el_name" id="name-input" name="name" type="text" placeholder="Имя" required minLength="2" maxLength="40" value={name || ''} onChange={handleUserNameChange}/>
                 <span id="name-input-error" className="popup__item-error"></span>
-                <input className="popup__item popup__item_el_job" id="job-input" name="job" type="text" placeholder="О себе" required minLength="2" maxLength="200" value={description} onChange={handleDescriptionChange}/>
+                <input className="popup__item popup__item_el_job" id="job-input" name="job" type="text" placeholder="О себе" required minLength="2" maxLength="200" value={description || ''} onChange={handleDescriptionChange}/>
                 <span id="job-input-error" className="popup__item-error"></span>
             </fieldset>
 </>} onClose={props.onClose} buttonText={"Сохранить"}/>

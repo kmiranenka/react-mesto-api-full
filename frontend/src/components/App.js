@@ -12,6 +12,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      currentUser:{
+        name: '',
+        about: '',
+        avatar: '',
+      },
       email: '',
       isPopupOpen: false,
       errorPopup: false
@@ -73,11 +78,20 @@ class App extends React.Component {
       const jwt = localStorage.getItem('jwt');
       auth.getContent(jwt).then((res) => {
         if (res) {
+          console.log(res)
           const userEmail = res.data.email;
-          console.log(res.data)
+          const name = res.data.name;
+          const about = res.data.about;
+          const avatar = res.data.avatar;
           this.setState({
             loggedIn: true,
             email: userEmail,
+            currentUser:{
+              name: name,
+              about: about,
+              avatar: avatar,
+            }
+            
           }, () => {
             this.props.history.push("/");
           });
@@ -91,7 +105,7 @@ class App extends React.Component {
 
       <>
         <Switch>
-          <ProtectedRoute exact path="/" loggedIn={this.state.loggedIn} component={MyProfile} userEmail={this.state.email} />
+          <ProtectedRoute exact path="/" loggedIn={this.state.loggedIn} component={MyProfile} userEmail={this.state.email} user={this.state.currentUser}/>
           <Route path="/sign-up">
             <Register handleRegister={this.handleRegister} errorPopup={this.state.errorPopup} isPopupOpen={this.state.isPopupOpen} onPopupClose={this.closePopup} />
           </Route>
