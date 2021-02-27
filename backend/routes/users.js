@@ -6,11 +6,7 @@ const {
 
 router.get('/', getUsers);
 
-router.get('/:_id', celebrate({
-  params: Joi.object().keys({
-    _id: Joi.string().alphanum().required(),
-  }),
-}), sendUser);
+router.get('/me', sendUser);
 
 router.patch('/me', celebrate({
   body: Joi.object().keys({
