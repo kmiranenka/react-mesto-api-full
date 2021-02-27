@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -11,6 +11,7 @@ const {
   login, createUser,
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const NotFoundError = require('./errors/not-found-err');
 
 mongoose.connect('mongodb://localhost:27017/mydb', {
   useNewUrlParser: true,
@@ -24,44 +25,33 @@ const app = express();
 
 const options = {
   origin: [
-  'http://localhost:3000',
-  'https://api.mironenko.students.nomoredomains.icu',
- 'https://www.api.mironenko.students.nomoredomains.icu',
- 'https://mironenko.students.nomoredomains.icu',
- 'https://www.mironenko.students.nomoredomains.icu'
+    'http://localhost:3000',
+    'https://api.mironenko.students.nomoredomains.icu',
+    'https://www.api.mironenko.students.nomoredomains.icu',
+    'https://mironenko.students.nomoredomains.icu',
+    'https://www.mironenko.students.nomoredomains.icu',
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],  credentials: true,};
-  app.use('*', cors(options));
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+app.use('*', cors(options));
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
-// const allowedCors = [
-//   'https://praktikum.tk',
-//   'http://praktikum.tk',
-//   'localhost:3000',
-//   'https://api.mironenko.students.nomoredomains.icu',
-// 'https://www.api.mironenko.students.nomoredomains.icu'
-// ];
-
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-
-//   next();
-// });
 
 app.use(requestLogger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const resourceNotFound = (req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
+const resourceNotFound = (req, res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
 };
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -84,15 +74,12 @@ app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-}); 
+});
 
-app.use(auth);
-
-app.use('/cards', cardsRouter);
-app.use('/users', usersRouter);
+app.use('/cards', auth, cardsRouter);
+app.use('/users', auth, usersRouter);
 
 app.use(resourceNotFound);
-
 app.use(errorLogger);
 
 app.use(errors());
@@ -107,6 +94,7 @@ app.use((err, req, res, next) => {
         ? 'На сервере произошла ошибка'
         : message,
     });
+  next();
 });
 
 app.listen(PORT, () => {

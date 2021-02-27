@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../modules/users');
+const User = require('../models/users');
 const NotFoundError = require('../errors/not-found-err');
 const ValidationError = require('../errors/validation-err');
+const ConflictError = require('../errors/conflict-err');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -28,7 +29,7 @@ module.exports.sendUser = (req, res, next) => {
 
 module.exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
-    .then(hash => User.create({
+    .then((hash) => User.create({
       email: req.body.email,
       password: hash,
     }))
@@ -36,9 +37,17 @@ module.exports.createUser = (req, res, next) => {
       if (!user) {
         throw new ValidationError('Переданы некорректные данные');
       }
-      res.send({ data: user });
+
+      const userData = {
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+        email: user.email,
+      };
+      res.send({ data: userData });
     })
-    .catch(next);
+    .catch(next(new ConflictError('Пользователь уже создан')));
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
@@ -54,7 +63,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next);
+    .catch(next(new ValidationError('Переданы некорректные данные')));
 };
 
 module.exports.updateUserAvatar = (req, res, next) => {
@@ -70,7 +79,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next);
+    .catch(next(new ValidationError('Переданы некорректные данные')));
 };
 
 module.exports.login = (req, res, next) => {
