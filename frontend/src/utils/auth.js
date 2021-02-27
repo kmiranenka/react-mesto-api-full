@@ -10,7 +10,7 @@ export const register = (email, password) => {
   })
   .then((response) => {
     try {
-      if (response.status === 201){
+      if (response.status === 200 || response.status === 201){
         return response.json();
       }
     } catch(e){
@@ -55,4 +55,7 @@ export const authorize = (email, password) => {
     })
     .then(res => res.json())
     .then(data => data)
+    .catch(err => {
+      console.log(err)
+   })
   } ;

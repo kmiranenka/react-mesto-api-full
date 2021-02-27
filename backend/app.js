@@ -33,6 +33,27 @@ const options = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],  credentials: true,};
   app.use('*', cors(options));
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+// const allowedCors = [
+//   'https://praktikum.tk',
+//   'http://praktikum.tk',
+//   'localhost:3000',
+//   'https://api.mironenko.students.nomoredomains.icu',
+// 'https://www.api.mironenko.students.nomoredomains.icu'
+// ];
+
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+
+//   next();
+// });
 
 app.use(requestLogger);
 
