@@ -1,4 +1,4 @@
-export const BASE_URL = 'api.mironenko.students.nomoredomains.icu';
+export const BASE_URL = 'https://api.mironenko.students.nomoredomains.icu';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
