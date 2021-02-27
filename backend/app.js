@@ -22,7 +22,14 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors());
+const options = {
+  origin: [
+  'http://localhost:3000',
+  'https://api.mironenko.students.nomoredomains.icu',
+ 'https://www.api.mironenko.students.nomoredomains.icu'
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  preflightContinue: false,  optionsSuccessStatus: 204,  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],  credentials: true,};
+  app.use('*', cors(options));
 
 // app.use(function(req, res, next) {
 //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
