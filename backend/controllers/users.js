@@ -82,7 +82,7 @@ module.exports.login = (req, res, next) => {
       }
       const token = jwt.sign({ _id: user._id }, '5ff9f3fae75a5de2804f627b86d2ad2f1db15fb324d02e9075c47494eaa9ddc8', { expiresIn: '7d' });
 
-      res.cookie('token', token, { httpOnly: true });
+      res.send({ token });
     })
     .catch(next);
 };
