@@ -3,7 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { errors, celebrate, Joi } = require('celebrate');
+const {
+  errors, celebrate, Joi, isCelebrateError,
+} = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cardsRouter = require('./routes/cards.js');
 const usersRouter = require('./routes/users.js');
@@ -82,10 +84,17 @@ app.use('/users', auth, usersRouter);
 app.use(resourceNotFound);
 app.use(errorLogger);
 
-app.use(errors());
+app.use((next) => {
+  errors();
+  next();
+});
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
+
+  if (isCelebrateError(err)) {
+    return res.status(400).send(err.message);
+  }
 
   res
     .status(statusCode)
@@ -94,7 +103,7 @@ app.use((err, req, res, next) => {
         ? 'На сервере произошла ошибка'
         : message,
     });
-  next();
+  return next();
 });
 
 app.listen(PORT, () => {
