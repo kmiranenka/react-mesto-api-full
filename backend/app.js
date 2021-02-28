@@ -93,7 +93,7 @@ app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
 
   if (isCelebrateError(err)) {
-    return res.status(400).send(err.message);
+    return res.status(400).send({ message: 'Переданы некорректные данные' });
   }
 
   res
