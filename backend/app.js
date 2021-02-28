@@ -26,31 +26,21 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-// const options = {
-//   origin: [
-//     'http://localhost:3000',
-//     'https://api.mironenko.students.nomoredomains.icu',
-//     'https://www.api.mironenko.students.nomoredomains.icu',
-//     'https://mironenko.students.nomoredomains.icu',
-//     'https://www.mironenko.students.nomoredomains.icu',
-//   ],
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-//   credentials: true,
-// };
-// app.use('*', cors(options));
-
-app.use(
-  cors({
-    allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
-    exposedHeaders: ['sessionId'],
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-  }),
-);
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'https://api.mironenko.students.nomoredomains.icu',
+    'https://www.api.mironenko.students.nomoredomains.icu',
+    'https://mironenko.students.nomoredomains.icu',
+    'https://www.mironenko.students.nomoredomains.icu',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+app.use('*', cors(options));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
